@@ -4,34 +4,48 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Protective Bot</title>
+
   <style>
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
-      background: #1e1e2f;
+      background: linear-gradient(135deg, #1e1e2f, #141421);
       color: #f5f5f5;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .card {
+      background: #22223a;
       padding: 50px;
+      border-radius: 15px;
+      width: 400px;
+      text-align: center;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+      animation: fadeIn 1s ease-in-out;
     }
 
     h1 {
-      font-size: 3em;
+      font-size: 2.5em;
       color: #4caf50;
       margin-bottom: 10px;
     }
 
     p {
-      font-size: 1.2em;
-      margin-bottom: 20px;
+      font-size: 1.1em;
+      margin-bottom: 30px;
+      color: #ccc;
     }
 
     .btn {
       display: inline-block;
       padding: 12px 25px;
-      margin: 10px;
+      margin: 8px;
       font-size: 1em;
       color: #fff;
       background-color: #4caf50;
-      border: none;
       border-radius: 8px;
       text-decoration: none;
       transition: 0.3s;
@@ -40,48 +54,60 @@
     .btn:hover {
       background-color: #45a049;
       transform: scale(1.05);
+      box-shadow: 0 0 15px #4caf50;
     }
 
     .btn-invite {
       display: block;
-      width: 200px;
-      margin: 30px auto 0 auto;
+      width: 100%;
+      margin-top: 25px;
       padding: 15px;
       font-size: 1.2em;
-      color: #fff;
-      background-color: #007bff; /* big blue button */
-      border: none;
+      font-weight: bold;
+      background: linear-gradient(90deg, #007bff, #00a2ff);
+      color: white;
       border-radius: 10px;
       text-decoration: none;
       transition: 0.3s;
     }
 
     .btn-invite:hover {
-      background-color: #0069d9;
       transform: scale(1.05);
+      box-shadow: 0 0 20px #007bff;
     }
 
     footer {
-      margin-top: 50px;
-      font-size: 0.9em;
-      color: #aaa;
+      margin-top: 30px;
+      font-size: 0.85em;
+      color: #777;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
+
 <body>
-  <h1>Protective Bot</h1>
-  <p>Your Discord server’s guardian. Automated moderation and protection for safe servers, making it perfect to have a clean server.</p>
 
-  <a class="btn" href="/main/terms/">Terms</a>
-  <a class="btn" href="/main/privacy/">Privacy</a>
+  <div class="card">
+    <h1>Protective Bot</h1>
+    <p>Advanced moderation and server protection for secure Discord communities.</p>
 
-  <!-- Invite Bot Button -->
-  <a class="btn-invite" href="https://discord.com/oauth2/authorize?client_id=1477683460746510521&scope=bot&permissions=8" target="_blank">
-    Invite Bot
-  </a>
+    <a class="btn" href="/main/terms/">Terms</a>
+    <a class="btn" href="/main/privacy/">Privacy</a>
 
-  <footer>
-    &copy; 2026 Protective Bot | Made with ❤️ for Discord servers
-  </footer>
+    <a class="btn-invite"
+       href="https://discord.com/oauth2/authorize?client_id=1477683460746510521&scope=bot&permissions=8"
+       target="_blank">
+       Invite Bot
+    </a>
+
+    <footer>
+      © 2026 Protective Bot
+    </footer>
+  </div>
+
 </body>
 </html>
