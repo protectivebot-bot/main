@@ -1,113 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Protective Bot</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protective Bot</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #1e1e2f, #141421);
-      color: #f5f5f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #1e1e2f, #141421);
+  color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
-    .card {
-      background: #22223a;
-      padding: 50px;
-      border-radius: 15px;
-      width: 400px;
-      text-align: center;
-      box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
-      animation: fadeIn 1s ease-in-out;
-    }
+/* Main Card */
+.card {
+  background: #22223a;
+  padding: 50px;
+  border-radius: 15px;
+  width: 420px;
+  text-align: center;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+  animation: fadeIn 0.8s ease-in-out;
+}
 
-    h1 {
-      font-size: 2.5em;
-      color: #4caf50;
-      margin-bottom: 10px;
-    }
+h1 {
+  font-size: 2.5em;
+  color: #4caf50;
+  margin-bottom: 10px;
+}
 
-    p {
-      font-size: 1.1em;
-      margin-bottom: 30px;
-      color: #ccc;
-    }
+p {
+  color: #ccc;
+  margin-bottom: 30px;
+}
 
-    .btn {
-      display: inline-block;
-      padding: 12px 25px;
-      margin: 8px;
-      font-size: 1em;
-      color: #fff;
-      background-color: #4caf50;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: 0.3s;
-    }
+.btn {
+  display: inline-block;
+  padding: 12px 25px;
+  margin: 8px;
+  font-size: 1em;
+  color: #fff;
+  background-color: #4caf50;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.3s;
+}
 
-    .btn:hover {
-      background-color: #45a049;
-      transform: scale(1.05);
-      box-shadow: 0 0 15px #4caf50;
-    }
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #4caf50;
+}
 
-    .btn-invite {
-      display: block;
-      width: 100%;
-      margin-top: 25px;
-      padding: 15px;
-      font-size: 1.2em;
-      font-weight: bold;
-      background: linear-gradient(90deg, #007bff, #00a2ff);
-      color: white;
-      border-radius: 10px;
-      text-decoration: none;
-      transition: 0.3s;
-    }
+.btn-invite {
+  display: block;
+  width: 100%;
+  margin-top: 25px;
+  padding: 15px;
+  font-size: 1.2em;
+  font-weight: bold;
+  background: linear-gradient(90deg, #007bff, #00a2ff);
+  color: white;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: 0.3s;
+}
 
-    .btn-invite:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px #007bff;
-    }
+.btn-invite:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #007bff;
+}
 
-    footer {
-      margin-top: 30px;
-      font-size: 0.85em;
-      color: #777;
-    }
+/* Corner Feature Button */
+.feature-btn {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 12px 18px;
+  background: #00a2ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(15px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+.feature-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #00a2ff;
+}
+
+/* Popup Overlay */
+.popup-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+/* Popup Box */
+.popup {
+  background: #22223a;
+  padding: 30px;
+  border-radius: 12px;
+  width: 350px;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(0,0,0,0.7);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.popup h2 {
+  color: #4caf50;
+}
+
+.popup p {
+  color: #ccc;
+  font-size: 0.95em;
+}
+
+.close-btn {
+  margin-top: 15px;
+  padding: 8px 15px;
+  background: #4caf50;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  box-shadow: 0 0 10px #4caf50;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="card">
-    <h1>Protective Bot</h1>
-    <p>Advanced moderation and server protection for secure Discord communities.</p>
+<div class="card">
+  <h1>Protective Bot</h1>
+  <p>Advanced moderation and server protection for secure Discord communities.</p>
 
-    <a class="btn" href="/main/terms/">Terms</a>
-    <a class="btn" href="/main/privacy/">Privacy</a>
+  <a class="btn" href="/main/terms/">Terms</a>
+  <a class="btn" href="/main/privacy/">Privacy</a>
 
-    <a class="btn-invite"
-       href="https://discord.com/oauth2/authorize?client_id=1477683460746510521&scope=bot&permissions=8"
-       target="_blank">
-       Invite Bot
-    </a>
+  <a class="btn-invite"
+     href="https://discord.com/oauth2/authorize?client_id=1477683460746510521&scope=bot&permissions=8"
+     target="_blank">
+     Invite Bot
+  </a>
+</div>
 
-    <footer>
-      © 2026 Protective Bot
-    </footer>
+<!-- Corner Feature Button -->
+<button class="feature-btn" onclick="openPopup()">Why Choose Us?</button>
+
+<!-- Popup -->
+<div class="popup-overlay" id="popup">
+<div class="popup">
+  <h2>Why Protective Bot?</h2>
+  <p>
+    Protective Bot is built with security first. Every feature is designed to keep
+    your server safe without slowing it down.
+  </p>
+
+  <p>
+    🛡 Real-time Anti-Raid Protection<br>
+    Instantly detects mass joins, bot raids, and suspicious activity.
+  </p>
+
+  <p>
+    🚫 Advanced Anti-Spam System<br>
+    Stops message spam, link spam, ghost pings, and scam attempts automatically.
+  </p>
+
+  <p>
+    🔎 Smart Moderation Logs<br>
+    Tracks actions clearly so admins always know what happened and why.
+  </p>
+
+  <p>
+    🔒 Permission-Safe Design<br>
+    Uses only required permissions and avoids unnecessary data access.
+  </p>
+
+  <p>
+    ⚡ Fast & Lightweight<br>
+    Optimized to respond instantly without lagging your server.
+  </p>
+
+    <button class="close-btn" onclick="closePopup()">Close</button>
   </div>
+</div>
+
+<script>
+function openPopup() {
+  document.getElementById("popup").style.display = "flex";
+}
+
+function closePopup() {
+  document.getElementById("popup").style.display = "none";
+}
+</script>
 
 </body>
 </html>
