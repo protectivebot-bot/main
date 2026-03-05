@@ -11,71 +11,145 @@ body {
   font-family: Arial, sans-serif;
   background: linear-gradient(135deg, #1e1e2f, #141421);
   color: #f5f5f5;
+  scroll-behavior: smooth;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: -200px;
+  left: -200px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0,162,255,0.15), transparent 70%);
+  z-index: -1;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(20,20,33,0.9);
+  backdrop-filter: blur(8px);
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  justify-content: space-between;
+  padding: 15px 40px;
+  z-index: 1000;
 }
 
-/* Main Card */
-.card {
-  background: #22223a;
-  padding: 50px;
-  border-radius: 15px;
-  width: 420px;
-  text-align: center;
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
-  animation: fadeIn 0.8s ease-in-out;
-}
-
-h1 {
-  font-size: 2.5em;
+.logo {
+  font-weight: bold;
   color: #4caf50;
-  margin-bottom: 10px;
 }
 
-p {
+.nav-links a {
+  margin-left: 20px;
+  text-decoration: none;
   color: #ccc;
-  margin-bottom: 30px;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #4caf50;
+}
+
+section {
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.hero {
+  padding-top: 150px;
+}
+
+.hero h1 {
+  font-size: 3em;
+  color: #4caf50;
+}
+
+.hero p {
+  max-width: 600px;
+  margin: auto;
+  color: #ccc;
 }
 
 .btn {
   display: inline-block;
   padding: 12px 25px;
-  margin: 8px;
-  font-size: 1em;
-  color: #fff;
-  background-color: #4caf50;
+  margin: 10px;
   border-radius: 8px;
   text-decoration: none;
   transition: 0.3s;
 }
 
-.btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px #4caf50;
-}
-
-.btn-invite {
-  display: block;
-  width: 100%;
-  margin-top: 25px;
-  padding: 15px;
-  font-size: 1.2em;
-  font-weight: bold;
+.btn-primary {
   background: linear-gradient(90deg, #007bff, #00a2ff);
   color: white;
-  border-radius: 10px;
-  text-decoration: none;
-  transition: 0.3s;
+  font-weight: bold;
 }
 
-.btn-invite:hover {
+.btn-primary:hover {
   transform: scale(1.05);
   box-shadow: 0 0 20px #007bff;
 }
 
-/* Corner Feature Button */
+.btn-secondary {
+  background: #4caf50;
+  color: white;
+}
+
+.btn-secondary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #4caf50;
+}
+
+/* Features */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.feature-card {
+  background: #22223a;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.6);
+  transition: 0.6s ease;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.feature-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.stat span {
+  display: block;
+  font-size: 2em;
+  color: #4caf50;
+}
+
+.footer {
+  background: #11111a;
+  padding: 30px;
+  text-align: center;
+  font-size: 0.9em;
+  color: #888;
+}
+
+/* Popup */
 .feature-btn {
   position: fixed;
   bottom: 20px;
@@ -87,15 +161,8 @@ p {
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
-  transition: 0.3s;
 }
 
-.feature-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px #00a2ff;
-}
-
-/* Popup Overlay */
 .popup-overlay {
   display: none;
   position: fixed;
@@ -105,24 +172,12 @@ p {
   align-items: center;
 }
 
-/* Popup Box */
 .popup {
   background: #22223a;
   padding: 30px;
   border-radius: 12px;
   width: 350px;
   text-align: center;
-  box-shadow: 0 0 30px rgba(0,0,0,0.7);
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-.popup h2 {
-  color: #4caf50;
-}
-
-.popup p {
-  color: #ccc;
-  font-size: 0.95em;
 }
 
 .close-btn {
@@ -134,71 +189,94 @@ p {
   border-radius: 6px;
   cursor: pointer;
 }
-
-.close-btn:hover {
-  box-shadow: 0 0 10px #4caf50;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
 </style>
 </head>
 
 <body>
 
-<div class="card">
+<nav class="navbar">
+  <div class="logo">Protective Bot</div>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#security">Security</a>
+    <a href="/main/terms/">Terms</a>
+    <a href="/main/privacy/">Privacy</a>
+  </div>
+</nav>
+
+<section class="hero">
   <h1>Protective Bot</h1>
-  <p>Advanced moderation and server protection for secure Discord communities.</p>
+  <p>Advanced moderation and real-time protection for serious Discord communities.</p>
 
-  <a class="btn" href="/main/terms/">Terms</a>
-  <a class="btn" href="/main/privacy/">Privacy</a>
-
-  <a class="btn-invite"
+  <a class="btn btn-primary"
      href="https://discord.com/oauth2/authorize?client_id=1477683460746510521&scope=bot&permissions=8"
      target="_blank">
      Invite Bot
   </a>
+</section>
+
+<section id="features">
+  <h2>Core Features</h2>
+  <div class="features">
+    <div class="feature-card">
+      <h3>🛡 Anti-Raid Detection</h3>
+      <p>Automatically blocks mass join raids and suspicious activity instantly.</p>
+    </div>
+    <div class="feature-card">
+      <h3>🚫 Anti-Spam System</h3>
+      <p>Prevents scam links, ghost pings, and message flooding.</p>
+    </div>
+    <div class="feature-card">
+      <h3>🔎 Smart Logging</h3>
+      <p>Clear, detailed logs for all moderation actions.</p>
+    </div>
+    <div class="feature-card">
+      <h3>⚡ Optimized Performance</h3>
+      <p>Fast response times without slowing your server.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Example Commands</h2>
+  <div class="feature-card visible">
+    <p><strong>/ban</strong> – Remove harmful users</p>
+    <p><strong>/lockdown</strong> – Lock server during raids</p>
+    <p><strong>/logs</strong> – View moderation history</p>
+  </div>
+</section>
+
+<section>
+  <h2>Trusted & Reliable</h2>
+  <div class="stats">
+    <div class="stat"><span id="servers">0</span> Servers Protected</div>
+    <div class="stat"><span>99.9%</span> Uptime</div>
+    <div class="stat"><span>Secure</span> Data Handling</div>
+  </div>
+</section>
+
+<section id="security">
+  <h2>Security First</h2>
+  <p style="max-width:700px;margin:auto;color:#ccc;">
+    Protective Bot uses minimal required permissions, avoids unnecessary data storage,
+    and is designed with a security-first architecture to protect communities.
+  </p>
+</section>
+
+<div class="footer">
+  © 2026 Protective Bot | Built for Secure Discord Communities
 </div>
 
-<!-- Corner Feature Button -->
 <button class="feature-btn" onclick="openPopup()">Why Choose Us?</button>
 
-<!-- Popup -->
 <div class="popup-overlay" id="popup">
-<div class="popup">
-  <h2>Why Protective Bot?</h2>
-  <p>
-    Protective Bot is built with security first. Every feature is designed to keep
-    your server safe without slowing it down.
-  </p>
-
-  <p>
-    🛡 Real-time Anti-Raid Protection<br>
-    Instantly detects mass joins, bot raids, and suspicious activity.
-  </p>
-
-  <p>
-    🚫 Advanced Anti-Spam System<br>
-    Stops message spam, link spam, ghost pings, and scam attempts automatically.
-  </p>
-
-  <p>
-    🔎 Smart Moderation Logs<br>
-    Tracks actions clearly so admins always know what happened and why.
-  </p>
-
-  <p>
-    🔒 Permission-Safe Design<br>
-    Uses only required permissions and avoids unnecessary data access.
-  </p>
-
-  <p>
-    ⚡ Fast & Lightweight<br>
-    Optimized to respond instantly without lagging your server.
-  </p>
-
+  <div class="popup">
+    <h2>Why Protective Bot?</h2>
+    <p>
+      Real-time raid detection, intelligent spam filtering, secure logging,
+      optimized performance, and privacy-focused design built specifically
+      for Discord communities.
+    </p>
     <button class="close-btn" onclick="closePopup()">Close</button>
   </div>
 </div>
@@ -207,10 +285,33 @@ p {
 function openPopup() {
   document.getElementById("popup").style.display = "flex";
 }
-
 function closePopup() {
   document.getElementById("popup").style.display = "none";
 }
+
+function animateValue(id, start, end, duration) {
+  let range = end - start;
+  let current = start;
+  let increment = end > start ? 1 : -1;
+  let stepTime = Math.abs(Math.floor(duration / range));
+  let obj = document.getElementById(id);
+  let timer = setInterval(function() {
+    current += increment;
+    obj.textContent = current;
+    if (current == end) clearInterval(timer);
+  }, stepTime);
+}
+animateValue("servers", 0, 1250, 1500);
+
+const cards = document.querySelectorAll(".feature-card");
+window.addEventListener("scroll", () => {
+  cards.forEach(card => {
+    const rect = card.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) {
+      card.classList.add("visible");
+    }
+  });
+});
 </script>
 
 </body>
