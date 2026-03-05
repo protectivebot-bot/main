@@ -241,8 +241,8 @@ section {
   <h2>Example Commands</h2>
   <div class="feature-card visible">
     <p><strong>/ban</strong> – Remove harmful users</p>
-    <p><strong>/lockdown</strong> – Lock server during raids</p>
-    <p><strong>/logs</strong> – View moderation history</p>
+    <p><strong>/kick</strong> – Kick people who break the rules</p>
+    <p><strong>/officialserver</strong> – Get the bot's official server</p>
   </div>
 </section>
 
@@ -301,7 +301,7 @@ function animateValue(id, start, end, duration) {
     if (current == end) clearInterval(timer);
   }, stepTime);
 }
-animateValue("servers", 0, 1250, 1500);
+animateValue("servers", 0, 2);
 
 const cards = document.querySelectorAll(".feature-card");
 window.addEventListener("scroll", () => {
